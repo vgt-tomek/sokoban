@@ -24,6 +24,8 @@ public class GlBeginEntity extends Entity {
 	public void draw() {
 		int indicesIndex = 0;
 		int coordinatesIndex = 0;
+		float[] color = getColor();
+		GL11.glColor4f(color[0], color[1], color[2], color[3]);
 		if (getTextureId() != null) {
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
 		}
