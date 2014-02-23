@@ -2,7 +2,7 @@ package pl.vgtworld.lwjgl.entities;
 
 public abstract class Entity {
 	
-	private float[] color = new float[4];
+	private float[] color = {1, 1, 1, 1};
 	
 	private Integer textureId;
 	
