@@ -24,7 +24,9 @@ public class GlBeginEntity extends Entity {
 	public void draw() {
 		int indicesIndex = 0;
 		int coordinatesIndex = 0;
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
+		if (getTextureId() != null) {
+			GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
+		}
 		GL11.glBegin(GL11.GL_TRIANGLES);
 		while (indicesIndex < indices.length) {
 			GL11.glTexCoord2f(
