@@ -4,6 +4,8 @@ import pl.vgtworld.lwjgl.Updateable;
 
 public class Position implements Updateable {
 	
+	private static final int FULL_CIRCLE = 360;
+
 	private float x;
 	
 	private float y;
@@ -21,6 +23,12 @@ public class Position implements Updateable {
 	private float deltaY;
 	
 	private float deltaZ;
+	
+	private float deltaAngleX;
+	
+	private float deltaAngleY;
+	
+	private float deltaAngleZ;
 	
 	public float getX() {
 		return x;
@@ -94,12 +102,39 @@ public class Position implements Updateable {
 		this.deltaZ = deltaZ;
 	}
 	
+	public float getDeltaAngleX() {
+		return deltaAngleX;
+	}
+
+	public void setDeltaAngleX(float deltaAngleX) {
+		this.deltaAngleX = deltaAngleX;
+	}
+
+	public float getDeltaAngleY() {
+		return deltaAngleY;
+	}
+
+	public void setDeltaAngleY(float deltaAngleY) {
+		this.deltaAngleY = deltaAngleY;
+	}
+
+	public float getDeltaAngleZ() {
+		return deltaAngleZ;
+	}
+
+	public void setDeltaAngleZ(float deltaAngleZ) {
+		this.deltaAngleZ = deltaAngleZ;
+	}
+
 	@Override
 	public void update(long elapsedTime) {
 		if (elapsedTime <= 0) {
 			return;
 		}
 		float elapsedTimeFraction = elapsedTime / 1000f;
+		updateAngleX(elapsedTimeFraction);
+		updateAngleY(elapsedTimeFraction);
+		updateAngleZ(elapsedTimeFraction);
 		updatePosition(elapsedTimeFraction);
 	}
 	
@@ -114,4 +149,41 @@ public class Position implements Updateable {
 			z+= deltaZ * elapsedTimeFraction;
 		}
 	}
+	
+	private void updateAngleX(float elapsedTimeFraction) {
+		if (deltaAngleX != 0) {
+			angleX+= deltaAngleX * elapsedTimeFraction;
+			if (angleX >= FULL_CIRCLE) {
+				angleX-= FULL_CIRCLE;
+			}
+			if (angleX < 0) {
+				angleX+= FULL_CIRCLE;
+			}
+		}
+	}
+	
+	private void updateAngleY(float elapsedTimeFraction) {
+		if (deltaAngleY != 0) {
+			angleY+= deltaAngleY * elapsedTimeFraction;
+			if (angleY >= FULL_CIRCLE) {
+				angleY-= FULL_CIRCLE;
+			}
+			if (angleY < 0) {
+				angleY+= FULL_CIRCLE;
+			}
+		}
+	}
+	
+	private void updateAngleZ(float elapsedTimeFraction) {
+		if (deltaAngleZ != 0) {
+			angleZ+= deltaAngleZ * elapsedTimeFraction;
+			if (angleZ >= FULL_CIRCLE) {
+				angleZ-= FULL_CIRCLE;
+			}
+			if (angleZ < 0) {
+				angleZ+= FULL_CIRCLE;
+			}
+		}
+	}
+	
 }
