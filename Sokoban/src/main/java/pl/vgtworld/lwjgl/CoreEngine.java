@@ -19,6 +19,10 @@ public abstract class CoreEngine {
 		windowSettings.setTitle(title);
 	}
 	
+	public void setResizable(boolean resizable) {
+		windowSettings.setResizable(resizable);
+	}
+	
 	public void setWindowSize(int width, int height) {
 		windowSettings.setWidth(width);
 		windowSettings.setHeight(height);
@@ -51,6 +55,13 @@ public abstract class CoreEngine {
 			update(elapsedTime);
 			
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+			
+			if (Display.wasResized()) {
+				windowSettings.setWidth(Display.getWidth());
+				windowSettings.setHeight(Display.getHeight());
+				GL11.glViewport(0, 0, windowSettings.getWidth(), windowSettings.getHeight());
+			}
+			
 			render();
 			Display.update();
 			Display.sync(framerate);

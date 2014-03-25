@@ -100,6 +100,7 @@ public class Sokoban extends CoreEngine {
 	public static void main(String[] args) throws CoreEngineException {
 		Sokoban sokoban = new Sokoban();
 		sokoban.setWindowSize(800, 600);
+		sokoban.setResizable(true);
 		sokoban.start(50);
 	}
 }
