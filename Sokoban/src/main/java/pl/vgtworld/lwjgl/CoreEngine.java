@@ -46,7 +46,9 @@ public abstract class CoreEngine {
 		running = true;
 		long time = System.currentTimeMillis();
 		while (running) {
-			update(System.currentTimeMillis() - time);
+			long elapsedTime = System.currentTimeMillis() - time;
+			time+= elapsedTime;
+			update(elapsedTime);
 			
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 			render();
@@ -58,7 +60,6 @@ public abstract class CoreEngine {
 				Display.destroy();
 				System.exit(0);
 			}
-			time = System.currentTimeMillis();
 		}
 	}
 	
