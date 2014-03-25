@@ -5,6 +5,7 @@ import pl.vgtworld.lwjgl.CoreEngineException;
 import pl.vgtworld.lwjgl.entities.Entity;
 import pl.vgtworld.lwjgl.entities.EntityException;
 import pl.vgtworld.lwjgl.entities.GlBeginEntity;
+import pl.vgtworld.lwjgl.io.Keyboard;
 import pl.vgtworld.lwjgl.projections.Camera;
 import pl.vgtworld.lwjgl.textures.TextureLoader;
 import pl.vgtworld.lwjgl.textures.TextureLoaderException;
@@ -14,6 +15,8 @@ public class Sokoban extends CoreEngine {
 	private Entity box;
 	
 	private Camera camera = new Camera();
+	
+	private Keyboard keyboard = new Keyboard();
 
 	@Override
 	public void init() throws CoreEngineException {
@@ -39,6 +42,7 @@ public class Sokoban extends CoreEngine {
 
 	@Override
 	public void update(long elapsedTime) {
+		keyboard.updateKeysState();
 	}
 
 	@Override
