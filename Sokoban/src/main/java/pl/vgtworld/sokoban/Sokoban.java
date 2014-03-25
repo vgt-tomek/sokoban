@@ -43,6 +43,7 @@ public class Sokoban extends CoreEngine {
 	@Override
 	public void update(long elapsedTime) {
 		keyboard.updateKeysState();
+		camera.update(elapsedTime);
 	}
 
 	@Override
