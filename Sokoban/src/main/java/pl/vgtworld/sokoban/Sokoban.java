@@ -34,10 +34,10 @@ public class Sokoban extends CoreEngine {
 		}
 		
 		//position camera
-		camera.setPositionX(0f);
-		camera.setPositionY(2.5f);
-		camera.setPositionZ(6.5f);
-		camera.setAngleX(0f);
+		camera.position.setX(0f);
+		camera.position.setY(2.5f);
+		camera.position.setZ(6.5f);
+		camera.position.setAngleX(0f);
 	}
 
 	@Override
