@@ -49,7 +49,7 @@ public class Sokoban extends CoreEngine {
 	@Override
 	public void render() {
 		setPerspectiveProjection(90, 0.1f, 1000f);
-		renderEntity(box, camera);
+		renderObject(box, camera);
 	}
 	
 	private static Entity createBox() throws EntityException {

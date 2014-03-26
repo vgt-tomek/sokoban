@@ -21,7 +21,7 @@ public class GlBeginEntity extends Entity {
 	}
 	
 	@Override
-	public void draw() {
+	public void render() {
 		int indicesIndex = 0;
 		int coordinatesIndex = 0;
 		float[] color = getColor();

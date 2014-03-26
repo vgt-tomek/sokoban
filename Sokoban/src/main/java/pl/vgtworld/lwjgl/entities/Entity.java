@@ -1,6 +1,8 @@
 package pl.vgtworld.lwjgl.entities;
 
-public abstract class Entity {
+import pl.vgtworld.lwjgl.Renderable;
+
+public abstract class Entity implements Renderable {
 	
 	private float[] color = {1, 1, 1, 1};
 	
@@ -27,6 +29,6 @@ public abstract class Entity {
 	
 	public abstract void setMeshData(float[] vertices, int[] indices, float[] textureCoordinates) throws EntityException;
 	
-	public abstract void draw();
-	
+	@Override
+	public abstract void render();
 }

@@ -136,13 +136,13 @@ public class App
 				GL11.glRotatef(yRotation[i], 0, 1, 0);
 				GL11.glScalef(scale[i], scale[i], scale[i]);
 				boxEntity.setTextureId(textureIds[texture[i]]);
-				boxEntity.draw();
+				boxEntity.render();
 				
 				//floor
 				GL11.glLoadIdentity();
 				cameraPosition();
 				GL11.glTranslatef(x, 0, z);
-				floorEntity.draw();
+				floorEntity.render();
 			}
 			
 			//gui
@@ -154,7 +154,7 @@ public class App
 			GL11.glDisable(GL11.GL_DEPTH_TEST);
 			
 			GL11.glLoadIdentity();
-			guiHealthBar.draw();
+			guiHealthBar.render();
 			
 
 			Display.update();

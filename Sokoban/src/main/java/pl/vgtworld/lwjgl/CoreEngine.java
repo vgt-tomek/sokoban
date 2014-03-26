@@ -6,7 +6,6 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 
-import pl.vgtworld.lwjgl.entities.Entity;
 import pl.vgtworld.lwjgl.projections.Camera;
 
 public abstract class CoreEngine {
@@ -84,10 +83,10 @@ public abstract class CoreEngine {
 	
 	public abstract void render();
 	
-	protected void renderEntity(Entity entity, Camera camera) {
+	protected void renderObject(Renderable object, Camera camera) {
 		GL11.glLoadIdentity();
 		camera.translation();
-		entity.draw();
+		object.render();
 	}
 	
 	private void coreInit() throws CoreEngineException {
