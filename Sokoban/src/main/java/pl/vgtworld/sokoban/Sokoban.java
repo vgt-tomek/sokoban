@@ -2,13 +2,11 @@ package pl.vgtworld.sokoban;
 
 import pl.vgtworld.lwjgl.CoreEngine;
 import pl.vgtworld.lwjgl.CoreEngineException;
-import pl.vgtworld.lwjgl.Renderable;
 import pl.vgtworld.lwjgl.entities.Entity;
 import pl.vgtworld.lwjgl.entities.EntityException;
 import pl.vgtworld.lwjgl.entities.GlBeginEntity;
 import pl.vgtworld.lwjgl.entities.WorldEntity;
 import pl.vgtworld.lwjgl.io.Keyboard;
-import pl.vgtworld.lwjgl.io.Keys;
 import pl.vgtworld.lwjgl.projections.Camera;
 import pl.vgtworld.lwjgl.textures.TextureLoader;
 import pl.vgtworld.lwjgl.textures.TextureLoaderException;
