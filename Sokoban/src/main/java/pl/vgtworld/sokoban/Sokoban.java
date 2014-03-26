@@ -2,17 +2,20 @@ package pl.vgtworld.sokoban;
 
 import pl.vgtworld.lwjgl.CoreEngine;
 import pl.vgtworld.lwjgl.CoreEngineException;
+import pl.vgtworld.lwjgl.Renderable;
 import pl.vgtworld.lwjgl.entities.Entity;
 import pl.vgtworld.lwjgl.entities.EntityException;
 import pl.vgtworld.lwjgl.entities.GlBeginEntity;
+import pl.vgtworld.lwjgl.entities.WorldEntity;
 import pl.vgtworld.lwjgl.io.Keyboard;
+import pl.vgtworld.lwjgl.io.Keys;
 import pl.vgtworld.lwjgl.projections.Camera;
 import pl.vgtworld.lwjgl.textures.TextureLoader;
 import pl.vgtworld.lwjgl.textures.TextureLoaderException;
 
 public class Sokoban extends CoreEngine {
 	
-	private Entity box;
+	private WorldEntity box;
 	
 	private Camera camera = new Camera();
 	
@@ -22,12 +25,13 @@ public class Sokoban extends CoreEngine {
 	public void init() throws CoreEngineException {
 		try {
 			//load entity
-			box = createBox();
+			Entity boxModel = createBox();
 			
 			//load texture
 			TextureLoader loader = new TextureLoader();
 			int boxTexture = loader.loadTexture(getClass().getResource("/1.jpg"));
-			box.setTextureId(boxTexture);
+			boxModel.setTextureId(boxTexture);
+			box = new WorldEntity(boxModel);
 			
 		} catch (TextureLoaderException | EntityException e) {
 			throw new CoreEngineException("Exception while loading data", e);
