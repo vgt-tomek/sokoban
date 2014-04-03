@@ -4,8 +4,8 @@ import pl.vgtworld.lwjgl.CoreEngine;
 import pl.vgtworld.lwjgl.CoreEngineException;
 import pl.vgtworld.lwjgl.entities.Entity;
 import pl.vgtworld.lwjgl.entities.EntityException;
-import pl.vgtworld.lwjgl.entities.GlBeginEntity;
 import pl.vgtworld.lwjgl.entities.WorldEntity;
+import pl.vgtworld.lwjgl.entities.loader.EntityLoader;
 import pl.vgtworld.lwjgl.io.Keyboard;
 import pl.vgtworld.lwjgl.projections.Camera;
 import pl.vgtworld.lwjgl.textures.TextureLoader;
@@ -23,7 +23,8 @@ public class Sokoban extends CoreEngine {
 	public void init() throws CoreEngineException {
 		try {
 			//load entity
-			Entity boxModel = createBox();
+			EntityLoader entityLoader = new EntityLoader();
+			Entity boxModel = entityLoader.load(Sokoban.class.getResourceAsStream("/models/cube1.obj"));
 			
 			//load texture
 			TextureLoader loader = new TextureLoader();
@@ -37,9 +38,9 @@ public class Sokoban extends CoreEngine {
 		
 		//position camera
 		camera.position.setX(0f);
-		camera.position.setY(2.5f);
-		camera.position.setZ(6.5f);
-		camera.position.setAngleX(0f);
+		camera.position.setY(1.4f);
+		camera.position.setZ(1.8f);
+		camera.position.setAngleX(30f);
 	}
 
 	@Override
@@ -52,51 +53,6 @@ public class Sokoban extends CoreEngine {
 	public void render() {
 		setPerspectiveProjection(90, 0.1f, 1000f);
 		renderObject(box, camera);
-	}
-	
-	private static Entity createBox() throws EntityException {
-		float[] vertices = {
-				-0.5f, 0f, -0.5f,
-				0.5f, 0f, -0.5f,
-				0.5f, 0f, 0.5f,
-				-0.5f, 0f, 0.5f,
-				-0.5f, 1f, 0.5f,
-				0.5f, 1f, 0.5f,
-				0.5f, 1f, -0.5f,
-				-0.5f, 1f, -0.5f
-		};
-		int[] indices = {
-				0, 1, 2,
-				0, 2, 3,
-				4, 5, 6,
-				6, 7, 4,
-				4, 3, 2,
-				2, 5, 4,
-				6, 1, 0,
-				0, 7, 6,
-				0, 3, 4,
-				4, 7, 0,
-				5, 2, 1,
-				1, 6, 5
-		};
-		float[] textureCoordinates = {
-				1f, 1f, 0f, 1f, 0f, 0f,
-				1f, 1f, 0f, 0f, 1f, 0f,
-				0f, 1f, 1f, 1f, 1f, 0f,
-				1f, 0f, 0f, 0f, 0f, 1f,
-				0f, 0f, 0f, 1f, 1f, 1f,
-				1f, 1f, 1f, 0f, 0f, 0f,
-				0f, 0f, 0f, 1f, 1f, 1f,
-				1f, 1f, 1f, 0f, 0f, 0f,
-				0f, 1f, 1f, 1f, 1f, 0f,
-				1f, 0f, 0f, 0f, 0f, 1f,
-				0f, 0f, 0f, 1f, 1f, 1f,
-				1f, 1f, 1f, 0f, 0f, 0f
-		};
-		
-		Entity entity = new GlBeginEntity();
-		entity.setMeshData(vertices, indices, textureCoordinates);
-		return entity;
 	}
 	
 	public static void main(String[] args) throws CoreEngineException {
