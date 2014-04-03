@@ -33,6 +33,7 @@ public abstract class CoreEngine {
 		float ratio = (float)windowSettings.getWidth() / windowSettings.getHeight();
 		GLU.gluPerspective(fov / ratio, ratio, nearClippingPlane, farClippingPlane);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 	}
 	
 	public void setOrthographicProjection() {
