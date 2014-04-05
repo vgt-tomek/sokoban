@@ -11,6 +11,22 @@ import pl.vgtworld.lwjgl.entities.GlBeginEntity;
 
 public class EntityLoader {
 	
+	private static final int LINE_DATA_COUNT = 4;
+
+	private static final int TEXTURE_INDEX_OFFSET = 1;
+
+	private static final int VERTEX_INDEX_OFFSET = 1;
+
+	private static final String FACE_DATA_PREFIX = "f";
+
+	private static final String TEXTURE_COORDINATES_DATA_PREFIX = "vt";
+
+	private static final String VERTEX_DATA_PREFIX = "v";
+
+	private static final String DATA_SEPARATOR = " +";
+
+	private static final String FACE_DATA_SEPARATOR = "/";
+
 	private List<Float> vertexList = new ArrayList<>();
 	
 	private List<Float> textureCoordinates = new ArrayList<>();
@@ -36,9 +52,9 @@ public class EntityLoader {
 		List<Integer> entityIndices = new ArrayList<>();
 		
 		for (String face : faces) {
-			String[] elements = face.split("/");
-			int vertexIndex = Integer.parseInt(elements[0]) - 1;
-			int textureIndex = Integer.parseInt(elements[1]) - 1;
+			String[] elements = face.split(FACE_DATA_SEPARATOR);
+			int vertexIndex = Integer.parseInt(elements[0]) - VERTEX_INDEX_OFFSET;
+			int textureIndex = Integer.parseInt(elements[1]) - TEXTURE_INDEX_OFFSET;
 			
 			entityIndices.add(vertexIndex);
 			entityTextureCoordinates.add(textureCoordinates.get(textureIndex * 3));
@@ -56,17 +72,17 @@ public class EntityLoader {
 	}
 	
 	private void parseLine(String line) {
-		String[] elements = line.split(" +");
+		String[] elements = line.split(DATA_SEPARATOR);
 		if (elements.length > 0) {
-			if (elements[0].equals("v") && elements.length == 4) {
+			if (elements[0].equals(VERTEX_DATA_PREFIX) && elements.length == LINE_DATA_COUNT) {
 				processVertex(elements);
 				return;
 			}
-			if (elements[0].equals("vt") && elements.length == 4) {
+			if (elements[0].equals(TEXTURE_COORDINATES_DATA_PREFIX) && elements.length == LINE_DATA_COUNT) {
 				processTextureCoordinates(elements);
 				return;
 			}
-			if (elements[0].equals("f") && elements.length == 4) {
+			if (elements[0].equals(FACE_DATA_PREFIX) && elements.length == LINE_DATA_COUNT) {
 				processFace(elements);
 				return;
 			}
